@@ -31,8 +31,8 @@ function onLoad() {
 
                 dot.setAttribute("data-url",bbImages[i])
                 showImage(bbImages[i], i+1);
-                dot.setAttribute("onclick",switchTo)
-                dot.onclick = switchTo;
+                dot.setAttribute("onclick",selectImage)
+                dot.onclick = selectImage;
                 document.getElementById('dot-div').appendChild(dot);
             }
         }
@@ -51,15 +51,15 @@ function hideAndShow(hide, show, num){
     }
 }
 
-//target divs with selected class to change selected button
-function switchTo(event){
-
+//target divs with selected class to change which button is selected
+function selectImage(event){
     //current selection will always have 'selected' class
     var currentSelection = document.getElementsByClassName("selected");
-    var currentSelectionUrl = currentSelection[0].parentNode.parentNode.children[2].currentSrc
+    var currentSelectionUrl = currentSelection[0].parentNode.parentNode.children[4].currentSrc
     currentSelection[0].className = "toBeSelected";
     //new selection will always be the target
     var newSelection = event.target
+    console.log(newSelection, 'new')
     newSelection.className = "selected";
     var newSelectionUrl = newSelection.getAttribute('data-url')
     hideAndShow(currentSelectionUrl, newSelectionUrl)
@@ -67,15 +67,46 @@ function switchTo(event){
 }
 
 
-function nextImg() {
+function cycleImg(direction) {
 
+    var original = document.getElementById('img-container').children[4]
+    var picAlt = document.getElementById('img-container').children[4].alt;
+    console.log(document.getElementById('img-container').children[3].children, 'event')
+    // if(document.getElementById('img-container').children.getElementsByTagName('alt') === picAlt){
+    //     var even = document.getElementById('img-container').children[3].children.getElementsByTagName('alt')
+    // }
+
+    if (direction === 'prev'){
+        var next = Number(picAlt) - 1
+        console.log(next, 'prev')
+    } else{
+        var next = Number(picAlt) + 1
+        console.log(next, 'next')
+    }
+    var changeTo = document.getElementById('hidden').children
+
+    for(var i=0; i < changeTo.length; i++) {
+        //3
+            if(next == 0) {
+                //when you click prev on one
+                next = changeTo.length+1;//3
+                console.log('going back', next)
+            }
+            if(next > changeTo.length+1) {
+                //when you click next on 3
+
+                next = 1;
+                console.log('going for', next)
+            }
+            if(changeTo[i].alt == next) {
+                console.log('im in ')
+                document.getElementById('img-container').appendChild(changeTo[i])
+                document.getElementById('hidden').appendChild(original)
+
+            }
+
+    }
 }
 
-function prevImg() {
 
-}
-
-function selectImg() {
-
-}
 
