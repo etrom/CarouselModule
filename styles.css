@@ -1,4 +1,42 @@
-.images {
+#hidden {
+    display: none;
+}
+
+#img-container {
     width: 100%;
-    height: auto;
+
+}
+img{
+    width: 100%;
+}
+
+#dot-div{
+    margin: 0 auto;
+    position: absolute;
+    margin-top: 345px;
+
+}
+.selected {
+    background-color: white;
+    border-radius: 100%;
+    border: 1px solid white;
+    width: 15px;
+    height: 15px;
+    padding:2px;
+    z-index: 5;
+    margin-right: 10px;
+    float: left;
+}
+
+
+
+.toBeSelected {
+    border-radius: 100%;
+    margin-right: 10px;
+    border: 3px solid white;
+    width: 15px;
+    height: 15px;
+    z-index: 5;
+    float: left;
+
 }
