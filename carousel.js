@@ -67,14 +67,27 @@ Carousel.init = function onLoad(array) {
             dotDiv.appendChild(dot);
         }
     }
-    that.myTimer = setInterval(function(){that.cycleImg('next')}, 5000);
 
+    Carousel.setInter();
+}
+
+Carousel.setInter = function() {
+    var that = this;
+    var inter = setInterval(function() {
+        that.cycleImg('next')
+    }, 5000);
+    for (var i = 0; i <= inter; i++) {
+        clearInterval(i);
+    }
+    inter = setInterval(function(){
+        that.cycleImg('next')
+    }, 5000);
 }
 
 
 //target divs with selected class to change which button is selected
 Carousel.selectImage = function selectImage(event){
-    var that = this;
+
     var currentSelection = document.getElementsByClassName("selection");
     var currentDot = document.getElementsByClassName("selected");
     var newDot = event.target;
@@ -83,12 +96,12 @@ Carousel.selectImage = function selectImage(event){
     currentDot[0].className = 'toBeSelected';
     newDot.className = 'selected';
     newImg.className = 'selection';
-
-
+    Carousel.setInter();
 }
 
 //next and previous
 Carousel.cycleImg =function cycleImg(direction) {
+
     var orginal = document.getElementsByClassName('selection')[0];
     var currentImgIdx = document.getElementsByClassName('selection')[0].getAttribute('data-order')
     if (direction === 'prev') {
@@ -115,6 +128,8 @@ Carousel.cycleImg =function cycleImg(direction) {
             }
 
     }
+    Carousel.setInter();
+
 }
 
 
