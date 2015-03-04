@@ -5,16 +5,22 @@
     <meta charset="utf-8" />
     <title>bbcarousel</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="carousel.js"></script>
   </head>
 
-  <body onload="onLoad()">
-    <div id="img-container">
-    </div>
-    <div id="dot-div"></div>
-    <div id="prev" onClick="cycleImg('prev')"></div>
-    <div id="next" onClick="cycleImg('next')"></div>
-    <p>testing</p>
+  <body>
+    <div id="cool-carousel"></div>
+    <script src="carousel.js"></script>
+    <script>
+      var a = 'http://www.thebigsalad.net/wp-content/uploads/2012/05/slide13.jpg'
+      var b = 'http://www.thebigsalad.net/wp-content/uploads/2012/11/slide5-e1398016833801.jpg'
+      var c = 'http://digital-art-gallery.com/oid/123/1600x500_21103_Salt_Flat_Racer_2d_sci_fi_car_futuristic_picture_image_digital_art.jpg'
+      var bbImages =[a,b,c];
+      var randomNum = Math.floor(Math.random()*10);
+      for (var i = 0; i < randomNum; i++) {
+        bbImages.push('http://lorempixel.com/g/' + 1600 + '/' + Math.floor(Math.random() * 100 + 500) + '/')
+      };
+      Carousel.init(bbImages);
+    </script>
   </body>
 
 </html>
