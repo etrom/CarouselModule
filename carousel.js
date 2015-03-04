@@ -1,9 +1,9 @@
+
 'use strict'
 
 var Carousel = function(array) {
     return new Carousel.init(array);
 }
-
 
 
 
@@ -67,15 +67,14 @@ Carousel.init = function onLoad(array) {
             dotDiv.appendChild(dot);
         }
     }
+    that.myTimer = setInterval(function(){that.cycleImg('next')}, 5000);
 
-    setInterval(function(){
-        that.cycleImg('next')
-    }, 5000)
 }
 
 
 //target divs with selected class to change which button is selected
 Carousel.selectImage = function selectImage(event){
+    var that = this;
     var currentSelection = document.getElementsByClassName("selection");
     var currentDot = document.getElementsByClassName("selected");
     var newDot = event.target;
@@ -85,9 +84,10 @@ Carousel.selectImage = function selectImage(event){
     newDot.className = 'selected';
     newImg.className = 'selection';
 
+
 }
 
-
+//next and previous
 Carousel.cycleImg =function cycleImg(direction) {
     var orginal = document.getElementsByClassName('selection')[0];
     var currentImgIdx = document.getElementsByClassName('selection')[0].getAttribute('data-order')
@@ -98,7 +98,6 @@ Carousel.cycleImg =function cycleImg(direction) {
     }
     var changeTo = document.getElementById('img-container').children
     for(var i=0; i < changeTo.length; i++) {
-        //3
             if(next < 0) {
                 next = changeTo.length-1;
             }
